@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Shandrakala N — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0d0d0d;
+    --bg2: #141414;
+    --bg3: #1c1c1c;
+    --accent: #c8f06b;
+    --accent2: #7ef5c4;
+    --text: #f0ede6;
+    --muted: #888882;
+    --border: rgba(255,255,255,0.08);
+    --card-bg: #161616;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 3rem;
+    background: rgba(13,13,13,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 0 6rem;
+    gap: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(200,240,107,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 32px; height: 1px;
+    background: var(--accent);
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 5vw, 5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-desc {
+    color: var(--muted);
+    font-size: 1rem;
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+  }
+  .hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--accent);
+    color: #0d0d0d;
+    padding: 0.75rem 1.75rem;
+    border-radius: 2px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
+  .btn-outline {
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 0.75rem 1.75rem;
+    border-radius: 2px;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--text); color: var(--text); }
+
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  .avatar-wrap {
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .avatar-inner {
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    background: var(--bg3);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 6rem;
+    color: var(--accent);
+    font-style: italic;
+  }
+  .orbit-tag {
+    position: absolute;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.5rem 0.9rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent2);
+    white-space: nowrap;
+  }
+  .orbit-tag:nth-child(2) { top: 10%; left: -20px; }
+  .orbit-tag:nth-child(3) { bottom: 10%; right: -30px; }
+  .orbit-tag:nth-child(4) { top: 50%; right: -50px; }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse { 0%,100% { opacity:0.3; } 50% { opacity:1; } }
+
+  /* SECTIONS */
+  section { padding: 6rem 6rem; }
+  .section-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .section-tag::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    max-width: 60px;
+    background: var(--border);
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 700;
+    margin-bottom: 3rem;
+    letter-spacing: -0.02em;
+  }
+
+  /* ABOUT / STATS */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-top: 3rem;
+  }
+  .stat-box {
+    background: var(--card-bg);
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: var(--accent);
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .stat-label { font-size: 12px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .about-text p { color: var(--muted); margin-bottom: 1rem; line-height: 1.9; }
+  .about-text p strong { color: var(--text); font-weight: 500; }
+
+  .skills-wrap { display: flex; flex-direction: column; gap: 1.5rem; }
+  .skill-group-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .skill-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .pill {
+    border: 1px solid var(--border);
+    padding: 0.3rem 0.85rem;
+    border-radius: 2px;
+    font-size: 12px;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .pill:hover { border-color: var(--accent); color: var(--accent); }
+  .pill.accent { border-color: rgba(200,240,107,0.3); color: var(--accent); }
+
+  /* EXPERIENCE */
+  .exp-timeline { position: relative; }
+  .exp-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: var(--border);
+  }
+  .exp-item {
+    padding-left: 2.5rem;
+    padding-bottom: 3rem;
+    position: relative;
+  }
+  .exp-item::before {
+    content: '';
+    position: absolute;
+    left: -4px; top: 6px;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+  }
+  .exp-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.4rem;
+  }
+  .exp-role {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.2rem;
+  }
+  .exp-company {
+    font-size: 13px;
+    color: var(--accent2);
+    margin-bottom: 1rem;
+  }
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .exp-bullets li {
+    color: var(--muted);
+    font-size: 14px;
+    display: flex;
+    gap: 0.75rem;
+    line-height: 1.6;
+  }
+  .exp-bullets li::before { content: '→'; color: var(--accent); flex-shrink: 0; margin-top: 1px; }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .project-card {
+    background: var(--card-bg);
+    padding: 2rem;
+    transition: background 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-card:hover { background: #1e1e1e; }
+  .project-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .project-card:hover::after { transform: scaleX(1); }
+  .project-year {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+  .project-icon {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .project-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+  .project-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .project-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 0.2rem 0.6rem;
+    border-radius: 2px;
+  }
+  .award-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(200,240,107,0.08);
+    border: 1px solid rgba(200,240,107,0.2);
+    color: var(--accent);
+    font-size: 10px;
+    font-family: 'DM Mono', monospace;
+    padding: 0.25rem 0.6rem;
+    border-radius: 2px;
+    margin-top: 0.75rem;
+  }
+
+  /* CERTIFICATIONS */
+  .cert-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  .cert-card {
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    border-radius: 2px;
+    background: var(--card-bg);
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  .cert-icon {
+    width: 36px; height: 36px;
+    border-radius: 2px;
+    background: rgba(200,240,107,0.1);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--accent);
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .cert-name { font-weight: 500; font-size: 14px; color: var(--text); margin-bottom: 0.2rem; }
+  .cert-org { font-size: 12px; color: var(--muted); }
+
+  /* CONTACT */
+  .contact-section { background: var(--bg2); }
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 14px;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    background: var(--card-bg);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .contact-link:hover { border-color: var(--accent); color: var(--text); }
+  .contact-link-icon {
+    width: 32px; height: 32px;
+    border-radius: 2px;
+    background: rgba(200,240,107,0.08);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--accent);
+    font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+  .contact-link-label { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); display: block; margin-bottom: 0.1rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  .contact-link-value { font-size: 14px; color: var(--text); }
+
+  .contact-tagline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+  .contact-tagline em { font-style: italic; color: var(--accent); }
+  .contact-sub { color: var(--muted); margin-top: 1.5rem; font-size: 15px; line-height: 1.8; }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* DIVIDER */
+  .divider { height: 1px; background: var(--border); margin: 0 6rem; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-content > * { animation: fadeUp 0.6s ease both; }
+  .hero-tag { animation-delay: 0.1s; }
+  .hero h1 { animation-delay: 0.2s; }
+  .hero-desc { animation-delay: 0.3s; }
+  .hero-actions { animation-delay: 0.4s; }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 7rem 2rem 4rem; gap: 2rem; text-align: center; }
+    .hero-visual { display: none; }
+    .hero-actions { justify-content: center; }
+    .hero-desc { margin: 0 auto 2rem; }
+    .hero-tag { justify-content: center; }
+    section { padding: 4rem 2rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .projects-grid { grid-template-columns: 1fr; }
+    .cert-grid { grid-template-columns: 1fr; }
+    .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .divider { margin: 0 2rem; }
+    footer { padding: 1.5rem 2rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Shandrakala N</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-tag">Available for opportunities</div>
+    <h1>Building <em>digital</em><br>experiences<br>that matter.</h1>
+    <p class="hero-desc">
+      Final-year B.E. CS student with a CGPA of 8.6, 3 internships, and a drive to build meaningful software — from IoT safety devices to AI-powered medical diagnostics.
+    </p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="avatar-wrap">
+      <div class="orbit-tag">Python · Java · SQL</div>
+      <div class="orbit-tag">Innovation Award 🏆</div>
+      <div class="orbit-tag">CGPA 8.6 / 10</div>
+      <div class="avatar-inner">S</div>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div style="margin: 0 6rem; background: var(--border); height: 1px;"></div>
+<div class="stats-grid" style="margin: 0 6rem;">
+  <div class="stat-box">
+    <div class="stat-num">8.6</div>
+    <div class="stat-label">CGPA / 10</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-num">3</div>
+    <div class="stat-label">Internships</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-num">3</div>
+    <div class="stat-label">Live Projects</div>
+  </div>
+
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-tag">About Me</div>
+  <div class="about-grid">
+    <div class="about-text">
+      <div class="section-title" style="margin-bottom: 1.5rem;">Code, curiosity,<br>and <em style="font-family: 'Playfair Display', serif; font-style: italic; color: var(--accent);">craftsmanship.</em></div>
+      <p>I'm <strong>Shandrakala N</strong>, a final-year Computer Science & Engineering student at Sethu Institute of Technology, Kariapatti, with a strong passion for building software that solves real-world problems.</p>
+      <p>With hands-on experience across <strong>Java development, SQL analytics, and mobile app development</strong> from three internships, I bring both academic rigour and practical execution to every project I touch.</p>
+      <p>My proudest moment? Engineering an <strong>IoT-based Women Safety Jacket</strong> that won the Innovation Award and was selected for the National Level Project Expo in Kerala. I love where hardware meets software.</p>
+      <p>I'm seeking entry-level roles in <strong>Software Development, Frontend Development, or Data Analytics</strong> where I can grow fast and make an impact.</p>
+    </div>
+    <div class="skills-wrap">
+      <div>
+        <div class="skill-group-label">Languages</div>
+        <div class="skill-pills">
+          <span class="pill accent">Python</span>
+          <span class="pill accent">Java</span>
+          <span class="pill accent">JavaScript</span>
+          <span class="pill accent">SQL</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-label">Frontend</div>
+        <div class="skill-pills">
+          <span class="pill">HTML5</span>
+          <span class="pill">CSS3</span>
+          <span class="pill">Tailwind CSS</span>
+          <span class="pill">DOM</span>
+          <span class="pill">Responsive Web</span>
+          <span class="pill">UI/UX</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-label">Database</div>
+        <div class="skill-pills">
+          <span class="pill">MySQL</span>
+          <span class="pill">SQL Queries</span>
+          <span class="pill">Schema Design</span>
+          <span class="pill">DB Optimization</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-label">Concepts</div>
+        <div class="skill-pills">
+          <span class="pill">OOP</span>
+          <span class="pill">Data Structures</span>
+          <span class="pill">Algorithms</span>
+          <span class="pill">SDLC</span>
+          <span class="pill">Agile</span>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-tag">Experience</div>
+  <div class="section-title">Where I've worked.</div>
+  <div class="exp-timeline">
+    <div class="exp-item">
+      <div class="exp-date">Jan 2025 – Mar 2025</div>
+      <div class="exp-role">App Development Intern</div>
+      <div class="exp-company">Phoenix Softech</div>
+      <ul class="exp-bullets">
+        <li>Designed, developed, and tested mobile application features using Java and Android SDK — reduced bug count by 40%.</li>
+        <li>Implemented UI enhancements improving overall user experience and delivered all milestones on schedule.</li>
+      </ul>
+    </div>
+    <div class="exp-item">
+      <div class="exp-date">Oct 2024 – Dec 2024</div>
+      <div class="exp-role">Data Analytics Intern (SQL & Reporting)</div>
+      <div class="exp-company">Tech Data Community</div>
+      <ul class="exp-bullets">
+        <li>Designed and executed 20+ SQL queries for data analysis, reporting, and business intelligence.</li>
+        <li>Automated repetitive database reporting workflows, improving data processing efficiency by 30%.</li>
+        <li>Delivered accurate analytical reports supporting data-driven business decisions for stakeholders.</li>
+      </ul>
+    </div>
+    <div class="exp-item">
+      <div class="exp-date">Sep 2024 – Oct 2024</div>
+      <div class="exp-role">Java Development Intern</div>
+      <div class="exp-company">Octanet Services Pvt. Ltd</div>
+      <ul class="exp-bullets">
+        <li>Developed and debugged Java applications applying OOP principles — inheritance, encapsulation, and polymorphism.</li>
+        <li>Executed full SDLC cycle from requirements gathering and development to testing on real-world projects.</li>
+        <li>Used debugging tools to identify and resolve code defects, improving application stability.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-tag">Projects</div>
+  <div class="section-title">Things I've built.</div>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-year">2026 · Deep Learning</div>
+      <span class="project-icon">🧠</span>
+      <div class="project-name">Automated Detection of Retinopathy of Prematurity</div>
+      <div class="project-desc">End-to-end AI pipeline to detect and classify ROP stages from retinal fundus images using U-Net segmentation, MaskFusion, and EfficientNet-B0 / ResNet-50.</div>
+      <div class="project-tags">
+        <span class="project-tag">Python</span>
+        <span class="project-tag">TensorFlow</span>
+        <span class="project-tag">CNN</span>
+        <span class="project-tag">U-Net</span>
+        <span class="project-tag">OpenCV</span>
+        <span class="project-tag">CLAHE</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-year">2025 · IoT / Hardware</div>
+      <span class="project-icon">🛡️</span>
+      <div class="project-name">IoT-Based Women Safety Jacket</div>
+      <div class="project-desc">Wearable IoT safety device with real-time GPS tracking, emergency SMS alerts, and buzzer. Engineered from scratch using Arduino UNO, GSM/GPS, and MQTT.</div>
+      <div class="project-tags">
+        <span class="project-tag">Arduino UNO</span>
+        <span class="project-tag">ESP8266</span>
+        <span class="project-tag">GSM/GPS</span>
+        <span class="project-tag">MQTT</span>
+      </div>
+      <div class="award-badge">🏆 Innovation Award · National Level Expo, Kerala</div>
+    </div>
+    <div class="project-card">
+      <div class="project-year">2025 · Frontend</div>
+      <span class="project-icon">🌐</span>
+      <div class="project-name">Responsive Web Applications</div>
+      <div class="project-desc">Two responsive, cross-browser web apps — an e-commerce store and a tourism site — featuring cart management, checkout workflows, form validation, and smooth navigation.</div>
+      <div class="project-tags">
+        <span class="project-tag">HTML5</span>
+        <span class="project-tag">CSS3</span>
+        <span class="project-tag">JavaScript</span>
+        <span class="project-tag">Tailwind CSS</span>
+        <span class="project-tag">DOM</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CERTIFICATIONS -->
+<section>
+  <div class="section-tag">Achievements</div>
+  <div class="section-title">Certifications &amp; recognition.</div>
+  <div class="cert-grid">
+    <div class="cert-card">
+      <div class="cert-icon">★</div>
+      <div>
+        <div class="cert-name">NPTEL Elite + Silver Certificate</div>
+        <div class="cert-org">Human Computer Interaction · National Programme on Technology Enhanced Learning</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">🏆</div>
+      <div>
+        <div class="cert-name">Innovation Award — IoT Women Safety Jacket</div>
+        <div class="cert-org">Selected for National Level Project Expo, Kerala 2024</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">✦</div>
+      <div>
+        <div class="cert-name">Event Coordinator</div>
+        <div class="cert-org">Fine Arts Cultural Fest · Sethu Institute of Technology</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">◈</div>
+      <div>
+        <div class="cert-name">Active Member</div>
+        <div class="cert-org">YI Young Indians Club</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div>
+      <div class="section-tag">Contact</div>
+      <div class="contact-tagline">Let's build something <em>great</em> together.</div>
+      <p class="contact-sub">I'm actively looking for full-time roles in Software Development, Frontend Development, or Data Analytics. If you have a role that fits, I'd love to chat.</p>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:shandrakalanagendran@gmail.com" class="contact-link">
+        <div class="contact-link-icon">@</div>
+        <div>
+          <span class="contact-link-label">Email</span>
+          <span class="contact-link-value">shandrakalanagendran@gmail.com</span>
+        </div>
+      </a>
+      <a href="tel:8015896126" class="contact-link">
+        <div class="contact-link-icon">☎</div>
+        <div>
+          <span class="contact-link-label">Phone</span>
+          <span class="contact-link-value">+91 8015896126</span>
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/in/shandrakala-nagendran-33a157321" target="_blank" class="contact-link">
+        <div class="contact-link-icon">in</div>
+        <div>
+          <span class="contact-link-label">LinkedIn</span>
+          <span class="contact-link-value">linkedin.com/in/shandrakala</span>
+        </div>
+      </a>
+      <a href="https://github.com/shandrakala" target="_blank" class="contact-link">
+        <div class="contact-link-icon">&lt;/&gt;</div>
+        <div>
+          <span class="contact-link-label">GitHub</span>
+          <span class="contact-link-value">github.com/shandrakala</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Shandrakala N · Madurai, Tamil Nadu</span>
+  <span>Built with HTML, CSS &amp; passion.</span>
+</footer>
+
+</body>
+</html>
